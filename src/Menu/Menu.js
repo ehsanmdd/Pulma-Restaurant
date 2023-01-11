@@ -1,29 +1,39 @@
-import React from "react";
-import "./Menu.css"
+import React, {useState} from 'react';
 
+import data from "./data"
+import MenuItem from './MenuItem';
+import Categories from "./Categories"
 
-const Menu = ({ menuData }) => {
+const allCategories =  ["all" ,...new Set(data.map(data => data.category))]
+
+function Menu() {
+  const [menuData , setMenuData] = useState(data)
+  const [categories , setCategories] = useState(allCategories)
+
+  const setMenu = (category) => {
+    if (category === "all") {
+      setMenuData(data)
+      return 
+    }
+
+    let filterMenu = data.filter(menuItem => menuItem.category === category)
+    setMenuData(filterMenu) 
+
+  }
+  
 
   return (
-    <>
-      <div className="section-center">
-        {menuData.map(menuItem => {
-            return (
-              <article key={menuItem.id} className="menu-item">
-                <img src={menuItem.img} alt="food-img" className="photo" />
-                <div className="item-info">
-                  <header>
-                    <h4>{menuItem.title}</h4>
-                    <h4 className="price">{menuItem.price}</h4>
-                  </header>
-                  <p className="item-text">{menuItem.desc}</p>
-                </div>
-              </article>
-            )
-          })}
-      </div>
-    </>
+    <main>
+      <section className="menu section">
+        <div className="title">
+          <h2>our menu</h2>
+          <div className="underline"></div>
+        </div>
+        <Categories categories={categories} setMenu={setMenu}/>
+        <MenuItem menuData={menuData}/>
+      </section>
+    </main>
   );
-};
+}
 
-export default Menu;
+export default Menu

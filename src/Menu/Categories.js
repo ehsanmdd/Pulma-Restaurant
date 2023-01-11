@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Categories = ({ categories }) => {
+const Categories = ({ categories, setMenu }) => {
 
   const [mainCategory , setMainCategory] = useState("all")
 
@@ -12,7 +12,10 @@ const Categories = ({ categories }) => {
           type="button"
           // highlight class  for highlight main category
           className={item === mainCategory ? "filter-btn highlight" : "filter-btn"}
-          onClick={() => setMainCategory(item)}
+          onClick={() => 
+            {setMainCategory(item)
+            setMenu(item)
+          }}
         >{item}</button>
       ))};
     </div>

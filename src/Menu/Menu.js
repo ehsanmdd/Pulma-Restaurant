@@ -8,7 +8,7 @@ const allCategories =  ["all" ,...new Set(data.map(data => data.category))]
 
 function Menu() {
   const [menuData , setMenuData] = useState(data)
-  const [categories , setCategories] = useState(allCategories)
+  const [categories] = useState(allCategories)
 
   const setMenu = (category) => {
     if (category === "all") {
@@ -26,7 +26,8 @@ function Menu() {
     <main>
       <section className="menu section">
         <div className="title">
-          <h2>our menu</h2>
+            <h1>Pulma Restuarant</h1>
+          <h3>our menu</h3>
           <div className="underline"></div>
         </div>
         <Categories categories={categories} setMenu={setMenu}/>

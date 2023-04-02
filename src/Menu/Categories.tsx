@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 
-const Categories = ({ categories, setMenu }) => {
+
+interface Props {
+  setMenu : (category: any) => void;
+  categories : string[]
+ }
+
+function Categories ({ categories, setMenu } : Props)  {
 
   const [mainCategory , setMainCategory] = useState("all")
 
   return (
     <div className="btn-container">
-      {categories.map((item, index) => (
+      {categories.map((item: any, index : number) => (
         <button
           key={index}
           type="button"

@@ -4,13 +4,13 @@ import data from "./data"
 import MenuItem from './MenuItem';
 import Categories from "./Categories"
 
-const allCategories =  ["all" ,...new Set(data.map(data => data.category))]
+const allCategories =  ["all" ,...new Set<any[]>(data.map((data:any) => data.category))]
 
 function Menu() {
   const [menuData , setMenuData] = useState(data)
   const [categories] = useState(allCategories)
 
-  const setMenu = (category) => {
+  const setMenu = (category: string) => {
     if (category === "all") {
       setMenuData(data)
       return 
